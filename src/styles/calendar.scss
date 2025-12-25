@@ -1,0 +1,25 @@
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: $gap;
+  width: (100 * $number-of-columns) + ($gap * ($number-of-columns - 1)) + ($padding-inline * 2);
+  padding: 0 $padding-inline;
+  margin: auto;
+}
+
+@for $i from 1 through 31 {
+  .calendar__block-#{$i} {
+    box-sizing: border-box;
+    background-color: #eee;
+    height: $cell-width-hight;
+    width: $cell-width-hight;
+    border: 1px solid black;
+  }
+
+  .calendar:nth-child(#{$i})::before {
+    content: "#{$i}";
+  }
+}
+
+
