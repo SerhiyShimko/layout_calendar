@@ -13,16 +13,6 @@
   margin: auto;
 }
 
-.calendar__day {
-  transition: all 0.5s ease;
-}
-
-.calendar__day:hover {
-  cursor: pointer;
-  background-color: #ffbfcb;
-  transform: translateY(20px);
-}
-
 @for $i from 1 through 31 {
   .calendar__day:nth-child(#{$i}) {
     display: flex;
@@ -33,6 +23,13 @@
     height: $cell-width-height;
     width: $cell-width-height;
     border: 1px solid black;
+    transition: all 0.5s ease;
+  }
+
+  .calendar__day:nth-child(#{$i}):hover {
+    cursor: pointer;
+    background-color: #ffbfcb;
+    transform: translateY(-30px);
   }
 
   .calendar__day:nth-child(#{$i})::before {
@@ -56,14 +53,16 @@ $days: (
   'mon': 1,
   'tue': 2,
   'wed': 3,
-  'thy': 4,
+  'thu': 4,
   'fri': 5,
   'sat': 6,
-  'san': 7,
+  'sun': 7,
 );
 
 @each $day, $number in $days {
   .calendar--start-day-#{$day} {
-    margin-left: calc((#{$number} - 1) * ($cell-width-height + $gap));
+    .calendar__day:first-child {
+      margin-left: calc((#{$number} - 1) * ($cell-width-height + $gap));
+    }
   }
 }
